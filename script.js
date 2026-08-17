@@ -179,6 +179,8 @@ function setLoading(isLoading) {
         searchBtn.textContent = "Searching...";
 
         locationBtn.disabled = true;
+        
+        locationBtn.textContent = "Getting Location...";
 
     } else {
 
@@ -187,9 +189,12 @@ function setLoading(isLoading) {
         weatherContent.classList.remove("hidden");
 
         searchBtn.disabled = false;
+
         searchBtn.textContent = "Search";
 
         locationBtn.disabled = false;
+
+        locationBtn.textContent = "◎ Use Current Location";
 
     }
 
