@@ -80,6 +80,7 @@
                             id="cityInput"
                             placeholder="e.g. Ludhiana, London, Tokyo"
                             autocomplete="off"
+                            aria-label="Enter city name"
                         >
 
                         <button
@@ -370,9 +371,12 @@
             </div>
 
 
+            <!-- Forecast Cards -->
             <div
                 id="forecastGrid"
                 class="forecast-grid"
+                aria-live="polite"
+                aria-label="Five day weather forecast"
             >
                 <!-- Forecast cards will be added by JavaScript -->
             </div>
