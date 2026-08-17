@@ -2,14 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <title>SkyCast Weather Forecast</title>
+    <meta
+        name="description"
+        content="SkyCast JavaScript Weather Forecast Application"
+    >
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>SkyCast - Weather Forecast</title>
 
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -17,6 +21,7 @@
 
     <!-- Header -->
     <header class="topbar">
+
         <div class="container header-content">
 
             <div>
@@ -30,19 +35,22 @@
             </div>
 
         </div>
+
     </header>
 
 
     <!-- Main Content -->
     <main class="container main-content">
 
-        <!-- Search + Current Weather -->
+        <!-- Hero Section -->
         <section class="hero-card">
 
-            <!-- Search Section -->
+            <!-- Search Panel -->
             <div class="search-panel">
 
-                <p class="eyebrow blue">SMART WEATHER SEARCH</p>
+                <p class="eyebrow blue">
+                    SMART WEATHER SEARCH
+                </p>
 
                 <h2>
                     Know your weather
@@ -73,9 +81,9 @@
                         >
 
                         <button
-                            type="submit"
                             id="searchBtn"
                             class="primary-btn"
+                            type="submit"
                             aria-label="Search weather"
                         >
                             Search
@@ -83,49 +91,53 @@
 
                     </div>
 
+                </form>
 
-                    <!-- Location + Recent Searches -->
-                    <div class="action-row">
 
-                        <button
-                            type="button"
-                            id="locationBtn"
-                            class="secondary-btn"
+                <!-- Location + Recent Searches -->
+                <div class="action-row">
+
+                    <button
+                        id="locationBtn"
+                        class="secondary-btn"
+                        type="button"
+                        aria-label="Use current location"
+                    >
+                        ◎ Use Current Location
+                    </button>
+
+
+                    <div
+                        id="recentWrap"
+                        class="recent-wrap hidden"
+                    >
+
+                        <select
+                            id="recentCities"
+                            class="select"
+                            aria-label="Recently searched cities"
                         >
-                            ◎ Use Current Location
-                        </button>
 
+                            <option value="">
+                                Recent Searches
+                            </option>
 
-                        <div
-                            id="recentWrap"
-                            class="recent-wrap hidden"
-                        >
-
-                            <select
-                                id="recentCities"
-                                class="select"
-                            >
-                                <option value="">
-                                    Recent Searches
-                                </option>
-                            </select>
-
-                        </div>
+                        </select>
 
                     </div>
 
-                </form>
+                </div>
 
             </div>
 
 
-            <!-- Today's Weather -->
+            <!-- Today's Weather Card -->
             <div class="today-card">
 
                 <!-- Loading -->
                 <div
                     id="loadingState"
-                    class="loading-state"
+                    class="loading-state hidden"
                 >
 
                     <div class="spinner"></div>
@@ -138,10 +150,7 @@
 
 
                 <!-- Weather Content -->
-                <div
-                    id="weatherContent"
-                    class="hidden"
-                >
+                <div id="weatherContent">
 
                     <div class="weather-header">
 
@@ -151,20 +160,21 @@
                                 id="todayDate"
                                 class="small-text"
                             >
+                                Today
                             </p>
 
                             <h2
                                 id="locationName"
                                 class="today-city"
                             >
-                                --
+                                Loading...
                             </h2>
 
                             <p
                                 id="weatherDescription"
                                 class="weather-description"
                             >
-                                --
+                                Weather condition
                             </p>
 
                         </div>
@@ -174,7 +184,7 @@
                             id="weatherIcon"
                             class="weather-icon"
                         >
-                            ☀️
+                            🌤️
                         </div>
 
                     </div>
@@ -206,6 +216,7 @@
                             id="unitToggle"
                             class="unit-btn"
                             type="button"
+                            aria-label="Toggle temperature unit"
                         >
                             °C / °F
                         </button>
@@ -221,10 +232,15 @@
                             <span>💧</span>
 
                             <div>
-                                <small>Humidity</small>
+
+                                <small>
+                                    Humidity
+                                </small>
+
                                 <strong id="humidity">
                                     --
                                 </strong>
+
                             </div>
 
                         </div>
@@ -235,10 +251,15 @@
                             <span>💨</span>
 
                             <div>
-                                <small>Wind</small>
+
+                                <small>
+                                    Wind
+                                </small>
+
                                 <strong id="wind">
                                     --
                                 </strong>
+
                             </div>
 
                         </div>
@@ -249,10 +270,15 @@
                             <span>🌡️</span>
 
                             <div>
-                                <small>Feels Like</small>
+
+                                <small>
+                                    Feels Like
+                                </small>
+
                                 <strong id="feelsLike">
                                     --
                                 </strong>
+
                             </div>
 
                         </div>
@@ -263,10 +289,15 @@
                             <span>☀️</span>
 
                             <div>
-                                <small>Daylight</small>
+
+                                <small>
+                                    Daylight
+                                </small>
+
                                 <strong id="daylight">
                                     --
                                 </strong>
+
                             </div>
 
                         </div>
@@ -286,24 +317,28 @@
             class="alert hidden"
         >
 
-            <span class="alert-icon">
+            <div class="alert-icon">
                 !
-            </span>
+            </div>
 
             <div>
 
                 <strong id="errorTitle">
-                    Something went wrong
+                    Unable to Load Weather
                 </strong>
 
-                <p id="errorMessage"></p>
+                <p id="errorMessage">
+                    Something went wrong.
+                </p>
 
             </div>
+
 
             <button
                 id="closeError"
                 class="close-btn"
                 type="button"
+                aria-label="Close error message"
             >
                 ×
             </button>
@@ -311,7 +346,7 @@
         </div>
 
 
-        <!-- 5 Day Forecast -->
+        <!-- Forecast Section -->
         <section class="forecast-section">
 
             <div class="section-heading">
@@ -328,19 +363,18 @@
 
                 </div>
 
-                <p class="forecast-info">
+                <span class="forecast-info">
                     Temperature · Wind · Humidity
-                </p>
+                </span>
 
             </div>
 
 
-            <!-- Forecast Cards -->
             <div
                 id="forecastGrid"
                 class="forecast-grid"
             >
-
+                <!-- Forecast cards added by JavaScript -->
             </div>
 
         </section>
@@ -362,9 +396,7 @@
             </div>
 
             <div class="info-tip">
-
                 Recent searches are saved automatically.
-
             </div>
 
         </section>
@@ -373,16 +405,13 @@
 
 
     <!-- Footer -->
-    <footer class="container footer">
+    <footer class="footer">
 
-        <p>
-            SkyCast · JavaScript Weather Forecast Application
-        </p>
+        SkyCast · JavaScript Weather Forecast Application
 
     </footer>
 
 
-    <!-- JavaScript -->
     <script src="script.js"></script>
 
 </body>
