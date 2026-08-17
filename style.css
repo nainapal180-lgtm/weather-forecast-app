@@ -15,19 +15,30 @@ body {
 
 body.sunny {
     background:
-        radial-gradient(circle at 85% 5%, rgba(250, 204, 21, 0.2), transparent 24rem),
+        radial-gradient(
+            circle at 85% 5%,
+            rgba(250, 204, 21, 0.2),
+            transparent 24rem
+        ),
         #f8fbff;
 }
 
 body.cloudy {
     background:
-        radial-gradient(circle at 50% 0%, rgba(148, 163, 184, 0.25), transparent 30rem),
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(148, 163, 184, 0.25),
+            transparent 30rem
+        ),
         #eef3f8;
 }
 
 body.rainy {
     background:
-        linear-gradient(rgba(30, 50, 80, 0.08), rgba(30, 50, 80, 0.08)),
+        linear-gradient(
+            rgba(30, 50, 80, 0.08),
+            rgba(30, 50, 80, 0.08)
+        ),
         #dfeaf5;
 }
 
@@ -562,6 +573,11 @@ body.rainy {
 
     .search-row {
         flex-direction: column;
+    }
+
+    /* Mobile search improvement */
+    .search-row .primary-btn {
+        width: 100%;
     }
 
     .primary-btn {
