@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkyCast Weather Forecast</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="topbar">
+        <div class="container header-content">
+
+            <div>
+                <p class="eyebrow">WEATHER FORECAST</p>
+                <h1>SkyCast</h1>
+            </div>
+
+            <div class="status-pill">
+                <span class="status-dot"></span>
+                Live Forecast
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- Main Content -->
+    <main class="container main-content">
+
+        <!-- Search + Current Weather -->
+        <section class="hero-card">
+
+            <!-- Search Section -->
+            <div class="search-panel">
+
+                <p class="eyebrow blue">SMART WEATHER SEARCH</p>
+
+                <h2>
+                    Know your weather
+                    <br>
+                    before you go.
+                </h2>
+
+                <p class="description">
+                    Search any city or use your current location
+                    to get today's weather and a 5-day forecast.
+                </p>
+
+
+                <!-- Search Form -->
+                <form id="searchForm">
+
+                    <label for="cityInput">
+                        Enter a city name
+                    </label>
+
+                    <div class="search-row">
+
+                        <input
+                            type="text"
+                            id="cityInput"
+                            placeholder="e.g. Ludhiana, London, Tokyo"
+                            autocomplete="off"
+                        >
+
+                        <button
+                            type="submit"
+                            id="searchBtn"
+                            class="primary-btn"
+                        >
+                            Search
+                        </button>
+
+                    </div>
+
+
+                    <!-- Location + Recent Searches -->
+                    <div class="action-row">
+
+                        <button
+                            type="button"
+                            id="locationBtn"
+                            class="secondary-btn"
+                        >
+                            ◎ Use Current Location
+                        </button>
+
+
+                        <div
+                            id="recentWrap"
+                            class="recent-wrap hidden"
+                        >
+
+                            <select
+                                id="recentCities"
+                                class="select"
+                            >
+                                <option value="">
+                                    Recent Searches
+                                </option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <!-- Today's Weather -->
+            <div class="today-card">
+
+                <!-- Loading -->
+                <div
+                    id="loadingState"
+                    class="loading-state"
+                >
+
+                    <div class="spinner"></div>
+
+                    <p>
+                        Loading weather...
+                    </p>
+
+                </div>
+
+
+                <!-- Weather Content -->
+                <div
+                    id="weatherContent"
+                    class="hidden"
+                >
+
+                    <div class="weather-header">
+
+                        <div>
+
+                            <p
+                                id="todayDate"
+                                class="small-text"
+                            >
+                            </p>
+
+                            <h2
+                                id="locationName"
+                                class="today-city"
+                            >
+                                --
+                            </h2>
+
+                            <p
+                                id="weatherDescription"
+                                class="weather-description"
+                            >
+                                --
+                            </p>
+
+                        </div>
+
+
+                        <div
+                            id="weatherIcon"
+                            class="weather-icon"
+                        >
+                            ☀️
+                        </div>
+
+                    </div>
+
+
+                    <!-- Temperature -->
+                    <div class="temperature-row">
+
+                        <div>
+
+                            <span
+                                id="todayTemp"
+                                class="today-temp"
+                            >
+                                --
+                            </span>
+
+                            <span
+                                id="todayUnit"
+                                class="today-unit"
+                            >
+                                °C
+                            </span>
+
+                        </div>
+
+
+                        <button
+                            id="unitToggle"
+                            class="unit-btn"
+                            type="button"
+                        >
+                            °C / °F
+                        </button>
+
+                    </div>
+
+
+                    <!-- Weather Metrics -->
+                    <div class="metric-grid">
+
+                        <div class="metric">
+
+                            <span>💧</span>
+
+                            <div>
+                                <small>Humidity</small>
+                                <strong id="humidity">
+                                    --
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <div class="metric">
+
+                            <span>💨</span>
+
+                            <div>
+                                <small>Wind</small>
+                                <strong id="wind">
+                                    --
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <div class="metric">
+
+                            <span>🌡️</span>
+
+                            <div>
+                                <small>Feels Like</small>
+                                <strong id="feelsLike">
+                                    --
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <div class="metric">
+
+                            <span>☀️</span>
+
+                            <div>
+                                <small>Daylight</small>
+                                <strong id="daylight">
+                                    --
+                                </strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Error Message -->
+        <div
+            id="errorBox"
+            class="alert hidden"
+        >
+
+            <span class="alert-icon">
+                !
+            </span>
+
+            <div>
+
+                <strong id="errorTitle">
+                    Something went wrong
+                </strong>
+
+                <p id="errorMessage"></p>
+
+            </div>
+
+            <button
+                id="closeError"
+                class="close-btn"
+                type="button"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <!-- 5 Day Forecast -->
+        <section class="forecast-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="eyebrow blue">
+                        LOOKING AHEAD
+                    </p>
+
+                    <h2>
+                        5-Day Forecast
+                    </h2>
+
+                </div>
+
+                <p class="forecast-info">
+                    Temperature · Wind · Humidity
+                </p>
+
+            </div>
+
+
+            <!-- Forecast Cards -->
+            <div
+                id="forecastGrid"
+                class="forecast-grid"
+            >
+
+            </div>
+
+        </section>
+
+
+        <!-- Information -->
+        <section class="info-strip">
+
+            <div>
+
+                <strong>
+                    Weather Data
+                </strong>
+
+                <p>
+                    Powered by Open-Meteo weather services.
+                </p>
+
+            </div>
+
+            <div class="info-tip">
+
+                Recent searches are saved automatically.
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="container footer">
+
+        <p>
+            SkyCast · JavaScript Weather Forecast Application
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
