@@ -47,3 +47,7 @@ Weather data is provided by Open-Meteo.
 ## Author
 
 Nancy Pal
+
+## Project Status
+
+The weather forecast application is ready for use.
