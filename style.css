@@ -638,3 +638,7 @@ body.rainy {
     }
 
 }
+.forecast-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 30px rgba(15, 35, 65, 0.12);
+}
