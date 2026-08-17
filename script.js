@@ -176,6 +176,8 @@ function setLoading(isLoading) {
 
         searchBtn.disabled = true;
 
+        searchBtn.textContent = "Searching...";
+
         locationBtn.disabled = true;
 
     } else {
@@ -185,6 +187,7 @@ function setLoading(isLoading) {
         weatherContent.classList.remove("hidden");
 
         searchBtn.disabled = false;
+        searchBtn.textContent = "Search";
 
         locationBtn.disabled = false;
 
