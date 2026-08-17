@@ -642,3 +642,11 @@ body.rainy {
     transform: translateY(-5px);
     box-shadow: 0 14px 30px rgba(15, 35, 65, 0.12);
 }
+.footer {
+    padding-top: 10px;
+    padding-bottom: 30px;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 12px;
+    line-height: 1.6;
+}
